@@ -69,6 +69,7 @@ void Error_Handler(void);
 #define CHA_GPIO_Port GPIOB
 #define CHB_Pin GPIO_PIN_7
 #define CHB_GPIO_Port GPIOB
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

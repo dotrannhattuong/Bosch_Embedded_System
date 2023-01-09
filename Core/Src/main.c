@@ -110,9 +110,7 @@ int main(void)
 	
 	/************** PID Controller **************/
 	PID_Init(&PID_Motor, T_Sample, 1.0, 0, 0, 0, 10); //99
-	
 
-	
 	/************** VNH5019 **************/
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
 	HAL_GPIO_WritePin(INA_GPIO_Port, INA_Pin, GPIO_PIN_RESET);
@@ -125,8 +123,9 @@ int main(void)
 	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_2);
 	
 	/************** SERVO **************/
-//	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-//	TIM1->CCR1 = 56;
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+	TIM3->CCR2 = 45; // from 45 to 250
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -136,6 +135,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		
   }
   /* USER CODE END 3 */
 }
@@ -194,8 +194,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		encoder_pulse_last = encoder_pulse;
 		
 		HAL_GPIO_WritePin(INA_GPIO_Port, INA_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(INB_GPIO_Port, INB_Pin, GPIO_PIN_SET);
-		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 20);
+		HAL_GPIO_WritePin(INB_GPIO_Port, INB_Pin, GPIO_PIN_RESET);
+		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 0);
+		
+//		TIM3->CCR2 = 250; 
+		
 //		Run(1.1 * (float)throttle_control_rx - 99);
 //		
 //		IR2104_Left_Run(PWM_Left);
