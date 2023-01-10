@@ -7,19 +7,17 @@ extern "C" {
 /*****************/
 #include "stm32f4xx_hal.h"
 
-#define M_PI 3.14159265358979323846
 extern int32_t overflow;
 
 /*****************/
 typedef struct {
   float Kp, Ki, Kd;
-  float alpha, beta, gama;
   float T;
-  float E, E1, E2;
+  float Error, pre_Error;
 	float pPart, iPart, dPart;
   struct {
     float Max, Min;
-    float Current, Last;
+    float Current;
   } Output;
 } pid;
 
@@ -34,12 +32,10 @@ void PID_Init(pid *PID,
               float OutMax);
 
 float PID_Process(pid *PID,
-									uint8_t Enable,
                   float Setpoint,
                   float CurrentPoint);
 
 void PID_Reset(pid *PID);
-void OverFlow(void);
 /*****************/
 #ifdef __cplusplus
 }

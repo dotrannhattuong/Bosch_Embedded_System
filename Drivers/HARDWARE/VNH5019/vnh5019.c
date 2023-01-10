@@ -1,6 +1,5 @@
 #include "vnh5019.h"
 
-int abs(int);
 /*************************/
 void VNH5019_Init(void) {	
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
@@ -17,7 +16,7 @@ void VNH5019_Run(int16_t PWM) {
 		  m_inb = GPIO_PIN_SET;
 		}
 		else {
-			m_ina = GPIO_PIN_SET;
+			m_ina = GPIO_PIN_RESET;
 		  m_inb = GPIO_PIN_RESET;
 		}
 	}

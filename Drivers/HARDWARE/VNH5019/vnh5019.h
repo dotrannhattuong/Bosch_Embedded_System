@@ -6,8 +6,8 @@ extern "C" {
 #endif
 /***************/
 #include "main.h"
-/**************/
 #include "tim.h"
+#include "stdlib.h"     /* abs */
 
 ///**************************/
 void VNH5019_Init(void);

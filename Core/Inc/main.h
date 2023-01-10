@@ -57,6 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_Pin GPIO_PIN_5
+#define LED_GPIO_Port GPIOA
 #define SERVO_Pin GPIO_PIN_7
 #define SERVO_GPIO_Port GPIOC
 #define INB_Pin GPIO_PIN_10
@@ -71,6 +73,8 @@ void Error_Handler(void);
 #define CHB_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
+extern __IO uint32_t Micros;
+extern uint32_t micros(void);
 
 /* USER CODE END Private defines */
 

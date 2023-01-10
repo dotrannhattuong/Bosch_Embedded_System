@@ -1,5 +1,6 @@
 --cpu Cortex-M4.fp
 "embedded_system\startup_stm32f401xe.o"
+"embedded_system\user_main.o"
 "embedded_system\main.o"
 "embedded_system\gpio.o"
 "embedded_system\tim.o"
@@ -22,10 +23,12 @@
 "embedded_system\stm32f4xx_hal_exti.o"
 "embedded_system\system_stm32f4xx.o"
 "embedded_system\vnh5019.o"
+"embedded_system\amt103_encoder.o"
 "embedded_system\tesla.o"
 "embedded_system\kalman.o"
 "embedded_system\math_functions.o"
 "embedded_system\pid.o"
+"embedded_system\pidautotuner.o"
 --strict --scatter "Embedded_System\Embedded_System.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

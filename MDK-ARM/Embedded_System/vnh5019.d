@@ -32,3 +32,4 @@ embedded_system\vnh5019.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr
 embedded_system\vnh5019.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 embedded_system\vnh5019.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 embedded_system\vnh5019.o: ../Core/Inc/tim.h
+embedded_system\vnh5019.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

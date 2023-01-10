@@ -32,7 +32,9 @@
 /******* SOFTWARE *******/
 #include "FILTER/kalman.h"
 #include "FUNCTIONS/math_functions.h"
+#include "PIDAUTOTUNER/pidautotuner.h"
 #include "PID/pid.h"
+#include "AMT103_ENCODER/amt103_encoder.h"
 #include "CONTROLLER/tesla.h"
 /* USER CODE END Includes */
 
@@ -43,14 +45,14 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define T_Sample 0.02
+#define T_Sample 20
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 pid PID_Motor;
-
-volatile int32_t encoder_pulse, encoder_pulse_last, v_car;
+int32_t des_speed;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -62,6 +64,17 @@ volatile int32_t encoder_pulse, encoder_pulse_last, v_car;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+extern void user_setup(int16_t target);
+extern void user_loop();
+extern double kp, ki, kd;
+extern bool start;
+
+__IO uint32_t Micros;
+
+uint32_t micros(void)
+{
+	return Micros;
+}
 
 /* USER CODE END PFP */
 
@@ -103,23 +116,30 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
+	/************** Configure micros() function **************/
+	SystemCoreClockUpdate();
+	SysTick_Config(SystemCoreClock / 1000000);
+	
 	/************** TIMER **************/
 	HAL_TIM_Base_Start_IT(&htim1);
-	
-	/************** PID Controller **************/
-	PID_Init(&PID_Motor, T_Sample, 1.0, 0, 0, 0, 20); //99
-	HAL_TIM_Base_Start_IT(&htim4);
 	
 	/************** VNH5019 **************/
 	VNH5019_Init();
 	
 	/************** ENCODER **************/
-	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_1);
-	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_2);
+	AMT103_Init();
 	
 	/************** SERVO **************/
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	TIM3->CCR2 = 50; // from 45 to 250
+	
+	/************** PID TUNING **************/
+//	user_setup(200);
+//	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	
+	/************** PID Controller **************/
+	PID_Reset(&PID_Motor);
+	PID_Init(&PID_Motor, T_Sample, 0.05, 0, 0, 0, 30); //0.5, 0.3, 0.2
 	
   /* USER CODE END 2 */
 
@@ -130,7 +150,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+				
   }
   /* USER CODE END 3 */
 }
@@ -186,18 +206,21 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if(htim->Instance == TIM4) OverFlow();
 	
   if (htim->Instance == TIM1) {
-		encoder_pulse = (overflow << 15 | TIM4->CNT);
-		if(encoder_pulse == -32768) encoder_pulse=0;
-		v_car = ((encoder_pulse - encoder_pulse_last)*1000*60)/(67000*20); // RPM
-		encoder_pulse_last = encoder_pulse;
-				
-		Run(20);
-		PID_Process(&PID_Motor, 1, Velocity.Output, v_car);
-		
-		if (encoder_pulse==2048) VNH5019_Run(0);
-		else VNH5019_Run(0); //PID_Motor.Output.Current
-		TIM3->CCR2 = 50; //Control_Angle(PID_IMU.Output.Current);
-	}
+		if (start == 1) {
+			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+			
+			/************* Encoder *************/ 
+			des_speed = AMT103_GetPulse();
+			
+			/************* Processing *************/ 
+			Run(200);
+			PID_Process(&PID_Motor, Velocity.Output, des_speed);
+			
+			/************* PWM *************/ 
+			VNH5019_Run(0); //PID_Motor.Output.Current
+			TIM3->CCR2 = 50; //Control_Angle(PID_IMU.Output.Current);
+			}
+		}
 }
 /* USER CODE END 4 */
 

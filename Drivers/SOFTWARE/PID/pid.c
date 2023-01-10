@@ -1,10 +1,5 @@
 #include "pid.h"
 
-int abs(int);
-double fabs(double);
-uint8_t Sampling_time = 10;
-uint8_t inv_Sampling_time = 100;
-int32_t overflow;
 /*********************/
 void PID_Init(pid *PID,
               float T,
@@ -13,42 +8,31 @@ void PID_Init(pid *PID,
               float Kd,
 							float OutMin,
               float OutMax) {
-  PID->T = T;
-
+	PID->T = T;
+								
 	PID->Output.Min = OutMin;
   PID->Output.Max = OutMax;
 
   PID->Kp = Kp;
   PID->Ki = Ki;
-  PID->Kd = Kd;
-
-  PID->alpha = 2 * PID->T * PID->Kp + PID->Ki * PID->T * PID->T + 2 * PID->Kd;
-  PID->beta = PID->T * PID->T * PID->Ki - 4 * PID->Kd - 2 * PID->T * PID->Kp;
-  PID->gama = 2 * PID->Kd;
-								
-	overflow = -1;
+  PID->Kd = Kd;								
 }
 
 /*************************/
 float PID_Process(pid *PID,
-									uint8_t Enable,
                   float Setpoint,
                   float CurrentPoint) {
 										
-  PID->E = Setpoint - CurrentPoint;
+  PID->Error = Setpoint - CurrentPoint;
   		
-	if (Enable == 0) PID->Output.Current = (PID->alpha * PID->E + PID->beta * PID->E1 + PID->gama * PID->E2 + 2 * PID->T * PID->Output.Last) / (2 * PID->T);
-	else {
-		PID->pPart = PID->E*PID->Kp;
-		PID->dPart = PID->Kd*(PID->E-PID->E1)*inv_Sampling_time;
-		PID->iPart += PID->Ki*Sampling_time*PID->E/1000;
-		PID->Output.Current += PID->pPart + PID->dPart + PID->iPart;
-	}
+	PID->pPart = PID->Error * PID->Kp;
+	PID->dPart = PID->Kd * (PID->Error-PID->pre_Error)*1000/PID->T;
+	PID->iPart += PID->Ki * PID->T * PID->Error/1000;
+	PID->Output.Current += PID->pPart + PID->dPart + PID->iPart;
 
-	PID->Output.Last = PID->Output.Current;
-  PID->E2 = PID->E1;
-  PID->E1 = PID->E;
-							 
+  PID->pre_Error = PID->Error;
+	
+	/***************** Saturation *****************/								
 	if (PID->Output.Min != 0) {
 		if (0 < PID->Output.Current && PID->Output.Current < PID->Output.Min) {
 			PID->Output.Current = PID->Output.Min;
@@ -61,11 +45,9 @@ float PID_Process(pid *PID,
 	if (PID->Output.Max != 0) {
 		if (PID->Output.Max < PID->Output.Current) {
 			PID->Output.Current = PID->Output.Max;
-			PID->Output.Last = PID->Output.Max;
 		}
 		else if (PID->Output.Current < (-PID->Output.Max)) {
 			PID->Output.Current = -PID->Output.Max;
-			PID->Output.Last = -PID->Output.Max;
 		}
 	}
 	
@@ -74,16 +56,7 @@ float PID_Process(pid *PID,
 
 /**********************/
 void PID_Reset(pid *PID) {
-  PID->E = 0;
+  PID->Error = 0;
   PID->Output.Current = 0;
-  PID->Output.Last = 0;
-  PID->E2 = 0;
-  PID->E1 = 0;
-}
-
-/****************************************************************/
-void OverFlow(void)
-{
-	if((TIM4->CR1 & 0x10) == 0x10) overflow--;
-	else overflow++;
+  PID->pre_Error = 0;
 }

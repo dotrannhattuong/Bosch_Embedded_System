@@ -1,9 +1,7 @@
 #include "tesla.h"
-
 /*********************/
 velocity Velocity;
 double T=0.1;
-double fabs(double);
 
 /************************/
 void Acceleration(float V_want, float *vout, float _acc, float _dcc) {	
@@ -28,7 +26,7 @@ uint16_t Control_Angle(int8_t angle) {
 
 /*********************/
 void Run(float speed) {
-	float acc = 1.0, dcc = 1.0;	
+	float acc = 100.0, dcc = 100.0;	
 	Velocity.Set= speed;
 	if (Velocity.Set > 0) Acceleration(Velocity.Set, &Velocity.Output, acc, dcc);
 	else if (Velocity.Set < 0)Acceleration(Velocity.Set, &Velocity.Output, -acc, -dcc);

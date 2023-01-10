@@ -35,8 +35,11 @@ embedded_system\main.o: ../Core/Inc/gpio.h
 embedded_system\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 embedded_system\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 embedded_system\main.o: ../Drivers/HARDWARE/VNH5019/vnh5019.h
+embedded_system\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 embedded_system\main.o: ../Drivers/SOFTWARE/FILTER/kalman.h
 embedded_system\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 embedded_system\main.o: ../Drivers/SOFTWARE/FUNCTIONS/math_functions.h
+embedded_system\main.o: ../Drivers/SOFTWARE/PIDAUTOTUNER/pidautotuner.h
 embedded_system\main.o: ../Drivers/SOFTWARE/PID/pid.h
+embedded_system\main.o: ../Drivers/HARDWARE/AMT103_ENCODER/amt103_encoder.h
 embedded_system\main.o: ../Drivers/SOFTWARE/CONTROLLER/tesla.h
