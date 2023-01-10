@@ -14,14 +14,8 @@ extern "C" {
 	
 /*****************/
 typedef struct {
-  float Radius;
-	float angular_speed;
-  struct {
-		float Left, Right;
-  } Output;
-	struct {
-		float Left, Right;
-  } Set;
+  float Output;
+  float Set;
 } velocity;
 /*****************/
 extern velocity Velocity;

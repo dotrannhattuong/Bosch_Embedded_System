@@ -4,6 +4,7 @@ int abs(int);
 double fabs(double);
 uint8_t Sampling_time = 10;
 uint8_t inv_Sampling_time = 100;
+int32_t overflow;
 /*********************/
 void PID_Init(pid *PID,
               float T,
@@ -24,6 +25,8 @@ void PID_Init(pid *PID,
   PID->alpha = 2 * PID->T * PID->Kp + PID->Ki * PID->T * PID->T + 2 * PID->Kd;
   PID->beta = PID->T * PID->T * PID->Ki - 4 * PID->Kd - 2 * PID->T * PID->Kp;
   PID->gama = 2 * PID->Kd;
+								
+	overflow = -1;
 }
 
 /*************************/
@@ -76,4 +79,11 @@ void PID_Reset(pid *PID) {
   PID->Output.Last = 0;
   PID->E2 = 0;
   PID->E1 = 0;
+}
+
+/****************************************************************/
+void OverFlow(void)
+{
+	if((TIM4->CR1 & 0x10) == 0x10) overflow--;
+	else overflow++;
 }

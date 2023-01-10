@@ -8,6 +8,7 @@ extern "C" {
 #include "stm32f4xx_hal.h"
 
 #define M_PI 3.14159265358979323846
+extern int32_t overflow;
 
 /*****************/
 typedef struct {
@@ -38,7 +39,7 @@ float PID_Process(pid *PID,
                   float CurrentPoint);
 
 void PID_Reset(pid *PID);
-
+void OverFlow(void);
 /*****************/
 #ifdef __cplusplus
 }
