@@ -35,6 +35,7 @@
 #include "PIDAUTOTUNER/pidautotuner.h"
 #include "PID/pid.h"
 #include "AMT103_ENCODER/amt103_encoder.h"
+#include "RS610WP_SERVO/rs610wp_servo.h"
 #include "CONTROLLER/tesla.h"
 /* USER CODE END Includes */
 
@@ -130,8 +131,7 @@ int main(void)
 	AMT103_Init();
 	
 	/************** SERVO **************/
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-	TIM3->CCR2 = 50; // from 45 to 250
+	RS610WP_Init();
 	
 	/************** PID TUNING **************/
 	user_setup(400, 0, 30);
@@ -218,7 +218,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			
 			/************* PWM *************/ 
 			VNH5019_Run(PID_Motor.Output.Current); //PID_Motor.Output.Current
-			TIM3->CCR2 = 50; //Control_Angle(PID_IMU.Output.Current);
+			RS610WP_Run(50); //Control_Angle(PID_IMU.Output.Current);
 			}
 		}
 }

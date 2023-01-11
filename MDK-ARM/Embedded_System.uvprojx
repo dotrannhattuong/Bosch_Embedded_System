@@ -561,6 +561,11 @@
               <FileType>1</FileType>
               <FilePath>..\Drivers\HARDWARE\AMT103_ENCODER\amt103_encoder.c</FilePath>
             </File>
+            <File>
+              <FileName>rs610wp_servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\HARDWARE\RS610WP_SERVO\rs610wp_servo.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

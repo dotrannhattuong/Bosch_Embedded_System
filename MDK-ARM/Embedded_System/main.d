@@ -42,4 +42,5 @@ embedded_system\main.o: ../Drivers/SOFTWARE/FUNCTIONS/math_functions.h
 embedded_system\main.o: ../Drivers/SOFTWARE/PIDAUTOTUNER/pidautotuner.h
 embedded_system\main.o: ../Drivers/SOFTWARE/PID/pid.h
 embedded_system\main.o: ../Drivers/HARDWARE/AMT103_ENCODER/amt103_encoder.h
+embedded_system\main.o: ../Drivers/HARDWARE/RS610WP_SERVO/rs610wp_servo.h
 embedded_system\main.o: ../Drivers/SOFTWARE/CONTROLLER/tesla.h

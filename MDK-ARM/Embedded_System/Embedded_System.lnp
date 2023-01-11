@@ -24,6 +24,7 @@
 "embedded_system\system_stm32f4xx.o"
 "embedded_system\vnh5019.o"
 "embedded_system\amt103_encoder.o"
+"embedded_system\rs610wp_servo.o"
 "embedded_system\tesla.o"
 "embedded_system\kalman.o"
 "embedded_system\math_functions.o"
