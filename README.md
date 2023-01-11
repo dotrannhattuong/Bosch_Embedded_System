@@ -5,7 +5,7 @@
 - [x] [Reely RS610WP SERVO](https://github.com/dotrannhattuong/Embedded_System/tree/main/Drivers/HARDWARE/RS610WP_SERVO)
 - [x] [VNH5019_DRIVER](https://github.com/dotrannhattuong/Embedded_System/tree/main/Drivers/HARDWARE/VNH5019)
 - [x] [AMT103_ENCODER](https://github.com/dotrannhattuong/Embedded_System/tree/main/Drivers/HARDWARE/AMT103_ENCODER)
-- [x] [PID_Autotuning](https://github.com/soCzech/TransNet)
+- [x] [PID_Autotuning](https://github.com/dotrannhattuong/Embedded_System/tree/main/Drivers/SOFTWARE/PIDAUTOTUNER)
 - [x] [PID_Controller](https://github.com/dotrannhattuong/Embedded_System/tree/main/Drivers/SOFTWARE/PIDAUTOTUNER)
 - [x] [Controller](https://github.com/dotrannhattuong/Embedded_System/tree/main/Drivers/SOFTWARE/CONTROLLER)
 - [ ] [Communication]()
