@@ -7,10 +7,10 @@
 #include "AMT103_ENCODER/amt103_encoder.h"
 
 PIDAutotuner tuner = PIDAutotuner();
-double kp, ki, kd;
+float kp, ki, kd;
 bool start=0;
 
-void user_setup(int16_t target) {
+void user_setup(int16_t target, int8_t min, int8_t max) {
 	// Set the target value to tune to
 	// This will depend on what you are tuning. This should be set to a value within
 	// the usual range of the setpoint. For low-inertia systems, values at the lower
@@ -25,13 +25,13 @@ void user_setup(int16_t target) {
 	// Set the output range
 	// These are the minimum and maximum possible output values of whatever you are
 	// using to control the system (Arduino analogWrite, for example, is 0-255)
-	tuner.setOutputRange(0, 30);
+	tuner.setOutputRange(min, max);
 
 	// Set the Ziegler-Nichols tuning mode
 	// Set it to either PIDAutotuner::ZNModeBasicPID, PIDAutotuner::ZNModeLessOvershoot,
 	// or PIDAutotuner::ZNModeNoOvershoot. Defaults to ZNModeNoOvershoot as it is the
 	// safest option.
-	tuner.setZNMode(PIDAutotuner::ZNModeBasicPID);
+	tuner.setZNMode(PIDAutotuner::ZNModeNoOvershoot);
 	
 	// Set Tunning Cycles
 	tuner.setTuningCycles(10);

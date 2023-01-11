@@ -1,5 +1,6 @@
 #include "pid.h"
 
+double kp_compute, ki_compute, kd_compute;
 /*********************/
 void PID_Init(pid *PID,
               float T,
@@ -24,11 +25,27 @@ float PID_Process(pid *PID,
                   float CurrentPoint) {
 										
   PID->Error = Setpoint - CurrentPoint;
-  		
-	PID->pPart = PID->Error * PID->Kp;
-	PID->dPart = PID->Kd * (PID->Error-PID->pre_Error)*1000/PID->T;
-	PID->iPart += PID->Ki * PID->T * PID->Error/1000;
-	PID->Output.Current += PID->pPart + PID->dPart + PID->iPart;
+	
+	/***************** AdaptiveTunings *****************/
+	kp_compute = PID->Kp;
+	ki_compute = PID->Ki;
+	kd_compute = PID->Kd;										
+//  if (fabs(PID->Error) < 20) {
+//		kp_compute = 0.1;
+//		ki_compute = 0.01;
+//		kd_compute = 0.01;
+//	}
+//	else {
+//		kp_compute = PID->Kp;
+//		ki_compute = PID->Ki;
+//		kd_compute = PID->Kd;
+//	}
+	
+	/***************** Compute *****************/					
+	PID->pPart = kp_compute * PID->Error;
+	PID->dPart = kd_compute * (PID->Error-PID->pre_Error);//*1000/PID->T;
+	PID->iPart += ki_compute * PID->Error;// * PID->T/1000;
+	PID->Output.Current += PID->pPart + PID->iPart + PID->dPart;
 
   PID->pre_Error = PID->Error;
 	

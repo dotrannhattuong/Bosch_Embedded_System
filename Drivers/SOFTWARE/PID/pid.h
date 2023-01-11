@@ -6,7 +6,8 @@ extern "C" {
 #endif
 /*****************/
 #include "stm32f4xx_hal.h"
-
+#include <math.h>       /* fabs */
+	
 extern int32_t overflow;
 
 /*****************/
@@ -22,7 +23,6 @@ typedef struct {
 } pid;
 
 /*****************/
-
 void PID_Init(pid *PID,
               float T,
               float Kp,

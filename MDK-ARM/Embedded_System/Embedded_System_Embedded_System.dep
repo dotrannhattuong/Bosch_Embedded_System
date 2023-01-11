@@ -1,6 +1,6 @@
 Dependencies for Project 'Embedded_System', Target 'Embedded_System': (DO NOT MODIFY !)
 F (startup_stm32f401xe.s)(0x63BD71D9)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 517" --pd "_RTE_ SETA 1" --pd "STM32F401xE SETA 1"--list startup_stm32f401xe.lst --xref -o embedded_system\startup_stm32f401xe.o --depend embedded_system\startup_stm32f401xe.d)
-F (..\Src\user_main.cpp)(0x63BD9B89)(--cpp -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\user_main.o --omf_browse embedded_system\user_main.crf --depend embedded_system\user_main.d)
+F (..\Src\user_main.cpp)(0x63BE7029)(--cpp -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\user_main.o --omf_browse embedded_system\user_main.crf --depend embedded_system\user_main.d)
 I (../Core/Inc/main.h)(0x63BD7408)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x63BC337B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x63BC582D)
@@ -37,7 +37,7 @@ I (../Drivers/SOFTWARE/PIDAUTOTUNER/pidautotuner.h)(0x63BD903E)
 I (../Drivers/HARDWARE/VNH5019/vnh5019.h)(0x63BD6283)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55DB3988)
 I (../Drivers/HARDWARE/AMT103_ENCODER/amt103_encoder.h)(0x63BD7B1A)
-F (../Core/Src/main.c)(0x63BDA1D2)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\main.o --omf_browse embedded_system\main.crf --depend embedded_system\main.d)
+F (../Core/Src/main.c)(0x63BE7716)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\main.o --omf_browse embedded_system\main.crf --depend embedded_system\main.d)
 I (../Core/Inc/main.h)(0x63BD7408)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x63BC337B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x63BC582D)
@@ -78,7 +78,7 @@ I (../Drivers/SOFTWARE/FILTER/kalman.h)(0x63BC36FC)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x55DB398E)
 I (../Drivers/SOFTWARE/FUNCTIONS/math_functions.h)(0x63BC3706)
 I (../Drivers/SOFTWARE/PIDAUTOTUNER/pidautotuner.h)(0x63BD903E)
-I (../Drivers/SOFTWARE/PID/pid.h)(0x63BD8D61)
+I (../Drivers/SOFTWARE/PID/pid.h)(0x63BE722F)
 I (../Drivers/HARDWARE/AMT103_ENCODER/amt103_encoder.h)(0x63BD7B1A)
 I (../Drivers/SOFTWARE/CONTROLLER/tesla.h)(0x63BD07A3)
 F (../Core/Src/gpio.c)(0x63BD71CE)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\gpio.o --omf_browse embedded_system\gpio.crf --depend embedded_system\gpio.d)
@@ -851,8 +851,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x63BC337B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x63BC337B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x63BC337B)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x55DB398E)
-F (..\Drivers\SOFTWARE\PID\pid.c)(0x63BD9A30)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\pid.o --omf_browse embedded_system\pid.crf --depend embedded_system\pid.d)
-I (..\Drivers\SOFTWARE\PID\pid.h)(0x63BD8D61)
+F (..\Drivers\SOFTWARE\PID\pid.c)(0x63BE76BF)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\pid.o --omf_browse embedded_system\pid.crf --depend embedded_system\pid.d)
+I (..\Drivers\SOFTWARE\PID\pid.h)(0x63BE722F)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x63BC337B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x63BC582D)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x63BC337B)
@@ -882,6 +882,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x63BC337B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x63BC337B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x63BC337B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x63BC337B)
+I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x55DB398E)
 F (..\Drivers\SOFTWARE\PIDAUTOTUNER\pidautotuner.cpp)(0x63BD903B)(--cpp -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/HARDWARE -I../Drivers/SOFTWARE --C99 --cpp11-I C:\Users\nhattuong\Desktop\Embedded_System\MDK-ARM\RTE-I D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F401xE -DUSE_HAL_DRIVER -DSTM32F401xE-o embedded_system\pidautotuner.o --omf_browse embedded_system\pidautotuner.crf --depend embedded_system\pidautotuner.d)
 I (..\Drivers\SOFTWARE\PIDAUTOTUNER\pidautotuner.h)(0x63BD903E)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x63BC337B)

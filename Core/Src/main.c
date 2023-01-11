@@ -64,9 +64,9 @@ int32_t des_speed;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-extern void user_setup(int16_t target);
+extern void user_setup(int16_t target, int8_t min, int8_t max);
 extern void user_loop();
-extern double kp, ki, kd;
+extern float kp, ki, kd;
 extern bool start;
 
 __IO uint32_t Micros;
@@ -134,12 +134,12 @@ int main(void)
 	TIM3->CCR2 = 50; // from 45 to 250
 	
 	/************** PID TUNING **************/
-//	user_setup(200);
+	user_setup(400, 0, 30);
 //	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 	
 	/************** PID Controller **************/
 	PID_Reset(&PID_Motor);
-	PID_Init(&PID_Motor, T_Sample, 0.05, 0, 0, 0, 30); //0.5, 0.3, 0.2
+	PID_Init(&PID_Motor, T_Sample, kp, ki, kd/10, 0, 30); //0.46, 0.27, 0.2
 	
   /* USER CODE END 2 */
 
@@ -213,11 +213,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			des_speed = AMT103_GetPulse();
 			
 			/************* Processing *************/ 
-			Run(200);
+			Run(300);
 			PID_Process(&PID_Motor, Velocity.Output, des_speed);
 			
 			/************* PWM *************/ 
-			VNH5019_Run(0); //PID_Motor.Output.Current
+			VNH5019_Run(PID_Motor.Output.Current); //PID_Motor.Output.Current
 			TIM3->CCR2 = 50; //Control_Angle(PID_IMU.Output.Current);
 			}
 		}
