@@ -134,12 +134,12 @@ int main(void)
 	RS610WP_Init();
 	
 	/************** PID TUNING **************/
-	user_setup(400, 0, 30);
+	user_setup(450, 0, 40);
 //	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 	
 	/************** PID Controller **************/
 	PID_Reset(&PID_Motor);
-	PID_Init(&PID_Motor, T_Sample, kp, ki, kd/10, 0, 30); //0.46, 0.27, 0.2
+	PID_Init(&PID_Motor, T_Sample, kp, 0, kd, 0, 40); //0.46, 0.27, 0.2
 	
   /* USER CODE END 2 */
 
@@ -213,7 +213,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			des_speed = AMT103_GetPulse();
 			
 			/************* Processing *************/ 
-			Run(300);
+			Run(400);
 			PID_Process(&PID_Motor, Velocity.Output, des_speed);
 			
 			/************* PWM *************/ 
