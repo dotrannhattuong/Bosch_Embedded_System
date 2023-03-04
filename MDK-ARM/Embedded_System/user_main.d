@@ -30,6 +30,7 @@ embedded_system\user_main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_p
 embedded_system\user_main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 embedded_system\user_main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 embedded_system\user_main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+embedded_system\user_main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 embedded_system\user_main.o: ../Core/Inc/tim.h
 embedded_system\user_main.o: ../Core/Inc/gpio.h
 embedded_system\user_main.o: ../Drivers/SOFTWARE/PIDAUTOTUNER/pidautotuner.h

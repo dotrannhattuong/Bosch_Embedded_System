@@ -2,6 +2,7 @@
 /*********************/
 velocity Velocity;
 double T=0.1;
+float angle_pwm=0;
 
 /************************/
 void Acceleration(float V_want, float *vout, float _acc, float _dcc) {	
@@ -20,8 +21,13 @@ void Acceleration(float V_want, float *vout, float _acc, float _dcc) {
 
 /*********************/
 uint16_t Control_Angle(int8_t angle) {
-	TIM3->CCR2 = 90; //from 45 to 250
-	return -0.3 * (float)angle + 52;
+	if (angle >= 25) angle=25;
+	else if (angle <= -25) angle=-25;
+	// 0 do: 147 
+	// 25 do: 200 -> phai 
+	// -25 do: 100 -> trai
+	angle_pwm =  2.12 * (float)angle + 147; //from 45 to 250
+	TIM3->CCR2 =	angle_pwm;
 }
 
 /*********************/

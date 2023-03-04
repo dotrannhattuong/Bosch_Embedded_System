@@ -30,4 +30,5 @@ embedded_system\tesla.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 embedded_system\tesla.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 embedded_system\tesla.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 embedded_system\tesla.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+embedded_system\tesla.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 embedded_system\tesla.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

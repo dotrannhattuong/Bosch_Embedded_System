@@ -49,15 +49,22 @@ float PID_Process(pid *PID,
 
   PID->pre_Error = PID->Error;
 	
-	/***************** Saturation *****************/								
-	if (PID->Output.Min != 0) {
-		if (0 < PID->Output.Current && PID->Output.Current < PID->Output.Min) {
-			PID->Output.Current = PID->Output.Min;
-		}
-		else if (-PID->Output.Min < PID->Output.Current && PID->Output.Current < 0) {
-			PID->Output.Current = -PID->Output.Min;
-		}
+	/***************** Saturation *****************/
+	if (Setpoint >= 0) {
+		if (PID->Output.Current <= 0) PID->Output.Current=0;
 	}
+	else {
+		if (PID->Output.Current >= 0) PID->Output.Current=0;
+	}
+	
+//	if (PID->Output.Min != 0) {
+//		if (0 < PID->Output.Current && PID->Output.Current < PID->Output.Min) {
+//			PID->Output.Current = PID->Output.Min;
+//		}
+//		else if (-PID->Output.Min < PID->Output.Current && PID->Output.Current < 0) {
+//			PID->Output.Current = -PID->Output.Min;
+//		}
+//	}
 
 	if (PID->Output.Max != 0) {
 		if (PID->Output.Max < PID->Output.Current) {

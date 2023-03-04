@@ -16,7 +16,7 @@ void VNH5019_Run(int16_t PWM) {
 		  m_inb = GPIO_PIN_SET;
 		}
 		else {
-			m_ina = GPIO_PIN_RESET;
+			m_ina = GPIO_PIN_SET; //GPIO_PIN_RESET
 		  m_inb = GPIO_PIN_RESET;
 		}
 	}

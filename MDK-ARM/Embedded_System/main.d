@@ -30,7 +30,10 @@ embedded_system\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 embedded_system\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 embedded_system\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 embedded_system\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+embedded_system\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+embedded_system\main.o: ../Core/Inc/dma.h
 embedded_system\main.o: ../Core/Inc/tim.h
+embedded_system\main.o: ../Core/Inc/usart.h
 embedded_system\main.o: ../Core/Inc/gpio.h
 embedded_system\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 embedded_system\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
