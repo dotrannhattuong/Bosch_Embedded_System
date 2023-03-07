@@ -5,7 +5,7 @@ void RS610WP_Init(void) {
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	
 	/******* SET HOME *******/
-	TIM3->CCR2 = 147; // from 45 to 250
+	TIM3->CCR2 = 100; // from 45 to 250
 }
 
 /*******************************/

@@ -51,10 +51,14 @@ float PID_Process(pid *PID,
 	
 	/***************** Saturation *****************/
 	if (Setpoint >= 0) {
-		if (PID->Output.Current <= 0) PID->Output.Current=0;
+		if (PID->Output.Current <= 0) {
+			PID->Output.Current=0;
+		}
 	}
 	else {
-		if (PID->Output.Current >= 0) PID->Output.Current=0;
+		if (PID->Output.Current >= 0) {
+			PID->Output.Current=0;
+		}
 	}
 	
 //	if (PID->Output.Min != 0) {

@@ -11,7 +11,7 @@ extern "C" {
 
 ///**************************/
 void VNH5019_Init(void);
-void VNH5019_Run(int16_t PWM);
+void VNH5019_Run(int16_t PWM, float velocity);
 
 /*****************/
 #ifdef __cplusplus

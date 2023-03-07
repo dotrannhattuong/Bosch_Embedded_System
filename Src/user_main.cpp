@@ -57,13 +57,13 @@ void user_setup(int16_t target, int8_t min, int8_t max) {
 			// Set the output - tunePid() will return values within the range configured
 			// by setOutputRange(). Don't change the value or the tuning results will be
 			// incorrect.
-			VNH5019_Run(output); // output
+			VNH5019_Run(output, 100); // output
 
 			// This loop must run at the same speed as the PID control loop being tuned
 			while (micros() - microseconds < 20000) HAL_Delay(1);
 	}
 	// Turn the output off here.
-	VNH5019_Run(0);
+	VNH5019_Run(0, 0);
 
 	// Get PID gains - set your PID controller's gains to these
 	kp = tuner.getKp();

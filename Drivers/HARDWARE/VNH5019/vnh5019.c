@@ -8,9 +8,9 @@ void VNH5019_Init(void) {
 }
 
 /*******************************/
-void VNH5019_Run(int16_t PWM) {
+void VNH5019_Run(int16_t PWM, float velocity) {
 	GPIO_PinState m_ina, m_inb;
-	if (PWM != 0) {
+	if (velocity != 0) {
 		if (0 < PWM) {
 			m_ina = GPIO_PIN_RESET;
 		  m_inb = GPIO_PIN_SET;

@@ -20,14 +20,18 @@ void Acceleration(float V_want, float *vout, float _acc, float _dcc) {
 }
 
 /*********************/
-uint16_t Control_Angle(int8_t angle) {
+void Control_Angle(int8_t angle) {
 	if (angle >= 25) angle=25;
 	else if (angle <= -25) angle=-25;
-	// 0 do: 147 
+	// 0 do: 140 
 	// 25 do: 200 -> phai 
-	// -25 do: 100 -> trai
-	angle_pwm =  2.12 * (float)angle + 147; //from 45 to 250
-	TIM3->CCR2 =	angle_pwm;
+	// -25 do: 80 -> trai
+	angle_pwm =  1.6 * (double)angle + 100; //from 45 to 250
+	
+	if (angle_pwm >= 200) angle_pwm=200;
+	else if (angle_pwm <= 80) angle_pwm=80;
+	
+	TIM3->CCR2 = (int)angle_pwm;
 }
 
 /*********************/

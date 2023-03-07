@@ -14,7 +14,8 @@ void AMT103_Init(void) {
 
 /*******************************/
 int32_t AMT103_GetPulse() {
-	encoder_pulse = (overflow << 15 | TIM4->CNT);
+	if (receive_speed == 0) encoder_pulse=0;
+	else encoder_pulse = (overflow << 15 | TIM4->CNT);
 //		if(encoder_pulse == -32768) encoder_pulse=0;
 	v_car = ((encoder_pulse - encoder_pulse_last)*1000*60/(65536*20)); // RPM
 	encoder_pulse_last = encoder_pulse;

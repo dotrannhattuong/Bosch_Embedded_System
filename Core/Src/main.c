@@ -61,7 +61,7 @@ int32_t des_speed;
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t rxdata[3] = {0, 0, 0};
+uint8_t rxdata[4] = {0, 0, 0, 0};
 int16_t receive_speed;
 int8_t receive_angle;
 /* USER CODE END PV */
@@ -152,7 +152,7 @@ int main(void)
 	PID_Init(&PID_Motor, T_Sample, kp, 0, kd, 0, 40); //0.46, 0.27, 0.2
 	
 	/************** COMMUNICATION **************/
-	while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 3) != HAL_OK) HAL_UART_DMAStop(&huart2);
+	while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
   __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
 	
   /* USER CODE END 2 */
@@ -164,6 +164,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		HAL_Delay(10);
 				
   }
   /* USER CODE END 3 */
@@ -221,19 +222,22 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	
   if (htim->Instance == TIM1) {
 		if (start == 1) {
-//			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 			
 			/************* Encoder *************/ 
 			des_speed = AMT103_GetPulse();
 			
 			/************* Processing *************/ 
-			Run(0); //receive_speed
+			Run(receive_speed); //receive_speed
 			PID_Process(&PID_Motor, Velocity.Output, des_speed);
 			
 			/************* PWM *************/ 
-			VNH5019_Run(PID_Motor.Output.Current); //PID_Motor.Output.Current
-			Control_Angle(0);
-//			RS610WP_Run(147); //Control_Angle(PID_IMU.Output.Current); 
+			VNH5019_Run(PID_Motor.Output.Current, Velocity.Output); //PID_Motor.Output.Current
+			Control_Angle(receive_angle); //receive_angle
+//			RS610WP_Run(130); //Control_Angle(PID_IMU.Output.Current); 
+			// 0 do: 140 
+			// 25 do: 200 -> phai 
+			// -25 do: 80-> trai
 			}
 		}
 }
@@ -241,15 +245,21 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 /*********************************************************/
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
   if (huart->Instance == USART2) {
-	  while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 3) != HAL_OK) HAL_UART_DMAStop(&huart2);
+	  while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
     __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
-		if (Size == 3) {
-			receive_speed = ((int16_t)rxdata[1]<<8)|rxdata[0];
-			receive_angle = rxdata[2];
+		if (Size == 4) {
+			if (rxdata[3] == 25) {
+				receive_speed = ((int16_t)rxdata[1]<<8)|rxdata[0];
+				receive_angle = rxdata[2];
+			}
+			else {
+				receive_speed = 0;
+				receive_angle = 0;
+			}
 			
 			/**** CHECK DATA ****/
-			if (receive_speed == 100 && receive_angle == 0) HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-			else HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+//			if (receive_speed == 100 && receive_angle == 0) HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+//			else HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 		}
   }
 }
@@ -257,7 +267,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
 /*********************************************************/
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
   if (huart->Instance == USART2) {
-		while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 3) != HAL_OK) HAL_UART_DMAStop(&huart2);
+		while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
     __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
 	}
 }

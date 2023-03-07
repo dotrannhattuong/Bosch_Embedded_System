@@ -22,7 +22,7 @@ extern velocity Velocity;
 
 /*****************/
 void Run(float speed);
-uint16_t Control_Angle(int8_t angle);
+void Control_Angle(int8_t angle);
 	
 /*****************/
 #ifdef __cplusplus
