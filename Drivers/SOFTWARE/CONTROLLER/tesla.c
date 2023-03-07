@@ -26,9 +26,9 @@ void Control_Angle(int8_t angle) {
 	// 0 do: 140 
 	// 25 do: 200 -> phai 
 	// -25 do: 80 -> trai
-	angle_pwm =  1.6 * (double)angle + 100; //from 45 to 250
+	angle_pwm =  2.4 * (double)angle + 135; //from 45 to 250
 	
-	if (angle_pwm >= 200) angle_pwm=200;
+	if (angle_pwm >= 195) angle_pwm=195;
 	else if (angle_pwm <= 80) angle_pwm=80;
 	
 	TIM3->CCR2 = (int)angle_pwm;

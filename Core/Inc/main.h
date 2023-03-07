@@ -58,12 +58,18 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define START_Pin GPIO_PIN_1
+#define START_GPIO_Port GPIOC
+#define START_EXTI_IRQn EXTI1_IRQn
 #define Jetson_TX_Pin GPIO_PIN_2
 #define Jetson_TX_GPIO_Port GPIOA
 #define Jetson_RX_Pin GPIO_PIN_3
 #define Jetson_RX_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_5
 #define LED_GPIO_Port GPIOA
+#define STOP_Pin GPIO_PIN_0
+#define STOP_GPIO_Port GPIOB
+#define STOP_EXTI_IRQn EXTI0_IRQn
 #define SERVO_Pin GPIO_PIN_7
 #define SERVO_GPIO_Port GPIOC
 #define INB_Pin GPIO_PIN_10

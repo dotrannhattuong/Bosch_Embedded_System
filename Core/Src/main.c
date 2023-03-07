@@ -64,6 +64,7 @@ int32_t des_speed;
 uint8_t rxdata[4] = {0, 0, 0, 0};
 int16_t receive_speed;
 int8_t receive_angle;
+uint8_t flag_button=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -232,9 +233,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			PID_Process(&PID_Motor, Velocity.Output, des_speed);
 			
 			/************* PWM *************/ 
-			VNH5019_Run(PID_Motor.Output.Current, Velocity.Output); //PID_Motor.Output.Current
-			Control_Angle(receive_angle); //receive_angle
-//			RS610WP_Run(130); //Control_Angle(PID_IMU.Output.Current); 
+			if (flag_button == 0) {
+				VNH5019_Run(0, 0); 
+				Control_Angle(0); 
+			}
+			else {
+				VNH5019_Run(PID_Motor.Output.Current, receive_speed); 
+				Control_Angle(receive_angle); //receive_angle
+			}
+//			RS610WP_Run(135); //Control_Angle(PID_IMU.Output.Current); 
 			// 0 do: 140 
 			// 25 do: 200 -> phai 
 			// -25 do: 80-> trai
@@ -270,6 +277,13 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
 		while (HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxdata, 4) != HAL_OK) HAL_UART_DMAStop(&huart2);
     __HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
 	}
+}
+
+/*********************************************************/
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+ if (GPIO_Pin == STOP_Pin) flag_button=0;
+ else if (GPIO_Pin == START_Pin) flag_button=1;
 }
 /* USER CODE END 4 */
 
