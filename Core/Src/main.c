@@ -141,10 +141,10 @@ int main(void)
 	RS610WP_Init();
 	
 	/************** PID TUNING **************/
-//	user_setup(450, 0, 40);
-	kp = 0.28914943;
+//	user_setup(200, 0, 40);
+	kp = 0.105649225;
 	ki = 0.0;
-	kd = 0.30469796;
+	kd = 0.18860482;
 	start = 1;
 //	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 	

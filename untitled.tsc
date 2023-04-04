@@ -1,5 +1,5 @@
 #STM Touch Studio user settings - do not edit
-#Tue Mar 07 23:34:28 ICT 2023
+#Fri Mar 10 11:19:49 ICT 2023
 ExprVariable.Col0ModelIdx=0
 ExprVariable.Col0Width=15
 ExprVariable.Col1ModelIdx=1
@@ -11,7 +11,7 @@ ExprVariable.Col3Width=111
 ExprVariable.Col4ModelIdx=4
 ExprVariable.Col4Width=40
 ExprVariable.Number=0
-GdbVar.ExecDate=1678206811979
+GdbVar.ExecDate=1678416373952
 GdbVar.LastExecRelative=MDK-ARM\\Embedded_System\\Embedded_System.axf
 GdbVar.Version=1
 GeneralPurpose.HorizontalSplit=409
@@ -98,11 +98,14 @@ VarViewer1.Name=VarViewer1
 VarViewer1.Range.Low=-134.0
 VarViewer1.Range.Up=731.0
 VarViewer1.SecondScreen=false
-VarViewer1.Var.Nb=12
+VarViewer1.Var.Nb=15
 VarViewer1.Var0.Name=Velocity.Output
 VarViewer1.Var1.Name=v_car
 VarViewer1.Var10.Name=rxdata[3]
 VarViewer1.Var11.Name=flag_button
+VarViewer1.Var12.Name=kp
+VarViewer1.Var13.Name=ki
+VarViewer1.Var14.Name=kd
 VarViewer1.Var2.Name=encoder_pulse
 VarViewer1.Var3.Name=PID_Motor.Output.Current
 VarViewer1.Var4.Name=receive_angle
